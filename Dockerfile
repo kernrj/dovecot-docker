@@ -16,9 +16,8 @@ RUN echo "Etc/UTC" > /etc/timezone && \
         apt-transport-https \
         ca-certificates \
         ssl-cert \
-        tini
-
-RUN curl -L https://repo.dovecot.org/DOVECOT-REPO-GPG | gpg --import && \
+        tini && \
+    curl -L https://repo.dovecot.org/DOVECOT-REPO-GPG | gpg --import && \
     gpg --export ED409DA1 > /etc/apt/trusted.gpg.d/dovecot.gpg && \
     add-apt-repository "deb https://repo.dovecot.org/ce-2.3-latest/ubuntu/focal focal main" && \
     apt-get -y install \
