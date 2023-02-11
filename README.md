@@ -3,11 +3,11 @@ Dovecot IMAP server in a Docker container.
 Dovecot handles email clients, but does not handle receiving email (Postfix can be used for this).
 
 Required variables:
-POSTMASTER_EMAIL: Email address of the postmaster (server-related email)
+- POSTMASTER_EMAIL: Email address of the postmaster (server-related email)
 
 Ports:
-993: IMAP
-24: LMTP (for communication with SMTP servers like Postfix).
+- 993: IMAP
+- 24: LMTP (for communication with SMTP servers like Postfix).
 
 Example:
 ```
