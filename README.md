@@ -64,19 +64,23 @@ services:
         volumes:
             - type: bind
               source: /etc/letsencrypt/live/mx1.your-server.com/fullchain.pem
-              target: /certs/fullchain.pem
+              target: /etc/postfix/cert.pem
               read_only: true
             - type: bind
               source: /etc/letsencrypt/live/mx1.your-server.com/privkey.pem
-              target: /certs/privkey.pem
+              target: /etc/postfix/privkey.pem
               read_only: true
+	    - type: bind
+	      source: ./postfix-data
+	      target: /var/spool/postfix
+	    - type: bind
+	      source: ./virtual
+	      target: /etc/postfix/virtual
         environment:
             - EMAIL_HOST=mx1.your-server.com
             - RECEIVE_FOR_DOMAINS="domain1.com domain2.com"
-            - CERT_FILE=/certs/fullchain.pem
-            - KEY_FILE=/certs/privkey.pem
         ports:
-            - 25:25
+            - "25:25"
 
     dovecot:
         image: kernrj/dovecot
@@ -98,7 +102,7 @@ services:
         environment:
             - POSTMASTER_EMAIL=your_email@example.com
         ports:
-            - 993:993
+            - "993:993"
 
     certbot: # creates or renews a certificate for the email server once every 30 days
         image: kernrj/certbot
@@ -113,5 +117,5 @@ services:
             - CERT_EMAIL=your_email@example.com
             - AGREE_TOS=yes # Specifying "yes" means you agree to the terms of service in the certbot application in the container being launched. This is equivalent to `certbot --agree-tos`.
         ports:
-            - 80:80
+            - "80:80"
 ```
