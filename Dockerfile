@@ -36,8 +36,8 @@ RUN echo "Etc/UTC" > /etc/timezone && \
         dovecot-solr \
         dovecot-sqlite \
         dovecot-submissiond && \
-    groupadd -g 1000 vmail && \
-    useradd -u 1000 -g vmail vmail -d /var/spool/vmail && \
+    groupadd -g 5000 vmail && \
+    useradd -u 5000 -g vmail vmail -d /var/spool/vmail && \
     passwd -l vmail && \
     rm -rf /etc/dovecot && \
     mkdir -p /var/spool/vmail /etc/dovecot && \

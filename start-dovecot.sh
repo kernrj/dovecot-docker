@@ -54,6 +54,7 @@ cat /etc/dovecot/dovecot.conf | \
 mv /tmp/dovecot.conf /etc/dovecot/dovecot.conf
 
 cat /etc/dovecot/dovecot.conf
+chown vmail:vmail /var/spool/vmail
 
 echo "Dovecot started."
 
